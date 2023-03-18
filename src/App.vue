@@ -3,11 +3,15 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <button @click="AddVimeo">Add a video by entering vimeo video ID</button>:
     <input type="text" v-model="vimeoId">
-    <br>
     <hr>
     <div v-for="(item, i) in vimeoIdList" :key="i">
       <VimeoPart :id="item"></VimeoPart>
     </div>
+
+    <a href="https://github.com/sunpochin/vue2-vimeo-player-cats-demo">source code</a>
+    <br>
+    <a href="https://vimeo-cat-dog.netlify.app/">Demo</a>
+      
   </div>
 </template>
 
