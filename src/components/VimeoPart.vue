@@ -24,7 +24,8 @@ import Player from '@vimeo/player'
       // let vm=this
       var options = {
         id: this.id,
-        responsive: true
+        // responsive: false,
+        width: 640,
       }
       // var player = new Player(this.divName, options)
       new Player(this.divName, options)

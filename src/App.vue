@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+    <button @click="AddVimeo">Add a video by entering vimeo video ID</button>:
     <input type="text" v-model="vimeoId">
-    <button @click="AddVimeo">Add a video by entering vimeo video ID</button>
+    <br>
+    <hr>
     <div v-for="(item, i) in vimeoIdList" :key="i">
       <VimeoPart :id="item"></VimeoPart>
     </div>
@@ -17,7 +19,7 @@ export default {
     return {
       vimeoId: '',
       // 3 initial demo videos of cat and dog.
-      vimeoIdList: [807306477, 807306201, 192191]
+      vimeoIdList: ['807306477', '807306201', '192191']
     }
   },
   methods: {
