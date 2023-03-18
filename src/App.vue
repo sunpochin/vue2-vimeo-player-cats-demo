@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <input type="text" v-model="vimeoId">
-    <button @click="AddVimeo">Add</button>
+    <button @click="AddVimeo">Add a video by entering vimeo video ID</button>
     <div v-for="(item, i) in vimeoIdList" :key="i">
       <VimeoPart :id="item"></VimeoPart>
     </div>
