@@ -27,7 +27,8 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      youtubeIdList: ['HlFgIBAm0Jg','OgyZIZMZAUM', 'UovBEFOgidI'],
+      // 3 initial demo videos of cat and dog.
+      youtubeIdList: ['HlFgIBAm0Jg','OgyZIZMZAUM', 'XcDtulLcrbU'],
 
       videoId: '',
       // 3 initial demo videos of cat and dog.
