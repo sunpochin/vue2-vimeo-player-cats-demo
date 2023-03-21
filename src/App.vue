@@ -1,15 +1,15 @@
 <template>
   <div id="app">
+      <button @click="AddYoutube">Add a video by entering video ID</button>:
+      <input type="text" v-model="videoId">
       <div v-for="(item, i) in youtubeIdList" :key="i">
         <youtube :video-id="item" />
       </div> 
       
 
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <!-- <button @click="AddVimeo">Add a video by entering vimeo video ID</button>:
-    <input type="text" v-model="vimeoId">
     <hr>
-    <div v-for="(item, i) in vimeoIdList" :key="i">
+    <!-- <div v-for="(item, i) in vimeoIdList" :key="i">
       <VimeoPart :id="item"></VimeoPart>
     </div> -->
 
@@ -29,7 +29,7 @@ export default {
     return {
       youtubeIdList: ['HlFgIBAm0Jg','OgyZIZMZAUM', 'UovBEFOgidI'],
 
-      vimeoId: '',
+      videoId: '',
       // 3 initial demo videos of cat and dog.
       vimeoIdList: ['807306477', '807306201', '192191']
     }
@@ -47,7 +47,10 @@ export default {
 
   methods: {
     AddVimeo() {
-      this.vimeoIdList.push(this.vimeoId);
+      this.vimeoIdList.push(this.videoId);
+    },
+    AddYoutube() {
+      this.youtubeIdList.push(this.videoId);
     },
   },
   name: 'App',
