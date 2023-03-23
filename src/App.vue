@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <button @click="searchCourse">Search Course</button>:
-    <input type="text" v-model="searchString">
+    <!-- <button @click="searchCourse">Search Course</button>:
+    <input type="text" v-model="searchString"> -->
     <br>
 
 
