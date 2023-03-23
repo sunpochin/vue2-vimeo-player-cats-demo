@@ -1,10 +1,13 @@
 <template>
   <div id="app">
-    <button @click="callAxios">callAxios</button>:
+    <button @click="searchYoutube">Search Youtube</button>:
+    <input type="text" v-model="searchString">
+    <br>
 
 
-    <button @click="AddYoutube">Add a video by entering video ID</button>:
-    <input type="text" v-model="videoId">
+    <!-- <button @click="AddYoutube">Add a video by entering video ID</button>:
+    <input type="text" v-model="videoId"> -->
+
     <div v-for="(item, i) in youtubeIdList" :key="i">
       <youtube :video-id="item" />
     </div>
@@ -31,7 +34,9 @@ export default {
   data() {
     return {
       // 3 initial demo videos of cat and dog.
-      youtubeIdList: ['HlFgIBAm0Jg','OgyZIZMZAUM', 'XcDtulLcrbU'],
+      searchString: '餵食貓咪',
+      // youtubeIdList: ['HlFgIBAm0Jg','OgyZIZMZAUM', 'XcDtulLcrbU'],
+      youtubeIdList: [],
 
       videoId: '',
       // 3 initial demo videos of cat and dog.
@@ -40,26 +45,36 @@ export default {
   },
   mounted() {
     console.log('mounted')
+    this.searchYoutube();
   },
 
   methods: {
-    async callAxios() {
+    async searchYoutube() {
       console.log('call Axios')
 
       const ret = await axios
-        .get('http://localhost:8000/tube?act=search&q=餵食貓咪')
+        .get('http://localhost:8000/tube?act=search&q=' + this.searchString)
 //        .get('https://nodejs-video-api.onrender.com/tube?act=search&q=餵食')
         .then((res) => {
           console.log('data: ' + res.data)
           console.log('data 0: ' + res.data[0])
-          let data0 = res.data[0];
-          const idx = data0.indexOf('watch?v=');
-          console.log('idx: ', idx, ', data0.length: ', data0.length)
-          let result = data0.substring(idx + 8, data0.length - 2);
-          console.log('result: ', result)
 
+          // let data0 = res.data[0];
+          // const idx = data0.indexOf('watch?v=');
+          // console.log('idx: ', idx, ', data0.length: ', data0.length)
+          // let result = data0.substring(idx + 8, data0.length - 2);
+          // console.log('result: ', result)
+          // this.youtubeIdList.push(result);
+          this.youtubeIdList.splice(0, this.youtubeIdList.length); 
 
-          this.youtubeIdList.push(result);
+          res.data.forEach((data) => {
+            const idx = data.indexOf('watch?v=');
+            console.log('idx: ', idx, ', data0.length: ', data.length)
+            let result = data.substring(idx + 8, data.length - 2);
+            console.log('result: ', result)
+            this.youtubeIdList.push(result);
+          })
+
 
         } ) 
       console.log('ret: ', ret)
