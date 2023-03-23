@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <button @click="searchYoutube">Search Youtube</button>:
+    <button @click="searchCourse">Search Course</button>:
     <input type="text" v-model="searchString">
     <br>
 
@@ -45,11 +45,11 @@ export default {
   },
   mounted() {
     console.log('mounted')
-    this.searchYoutube();
+    this.searchCourse();
   },
 
   methods: {
-    async searchYoutube() {
+    async searchCourse() {
       console.log('call Axios')
 
       const ret = await axios
