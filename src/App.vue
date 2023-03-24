@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <div>
+      <button @click="authorize">登入 Google</button>
+    </div>
+
     <!-- <button @click="searchCourse">Search Course</button>:
     <input type="text" v-model="searchString"> -->
     <br>
@@ -8,9 +12,9 @@
     <!-- <button @click="AddYoutube">Add a video by entering video ID</button>:
     <input type="text" v-model="videoId"> -->
 
-    <div v-for="(item, i) in youtubeIdList" :key="i">
+    <!-- <div v-for="(item, i) in youtubeIdList" :key="i">
       <youtube :video-id="item" />
-    </div>
+    </div> -->
 
 
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
@@ -45,10 +49,14 @@ export default {
   },
   mounted() {
     console.log('mounted')
-    this.searchCourse();
+//    this.searchCourse();
   },
 
   methods: {
+    authorize() {
+      window.location.href = "http://localhost:8000/auth/google"; // Node.js 授權路由
+    },
+
     async searchCourse() {
       console.log('call Axios')
 
