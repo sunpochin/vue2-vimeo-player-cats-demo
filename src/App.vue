@@ -11,7 +11,8 @@
 
     <!-- <button @click="AddYoutube">Add a video by entering video ID</button>:
     <input type="text" v-model="videoId"> -->
-
+    <input type="text" v-model="meData">
+    
     <!-- <div v-for="(item, i) in youtubeIdList" :key="i">
       <youtube :video-id="item" />
     </div> -->
@@ -37,6 +38,7 @@ import axios from 'axios'
 export default {
   data() {
     return {
+      meData: '',
       // 3 initial demo videos of cat and dog.
       searchString: '餵食貓咪',
       // youtubeIdList: ['HlFgIBAm0Jg','OgyZIZMZAUM', 'XcDtulLcrbU'],
@@ -49,12 +51,26 @@ export default {
   },
   mounted() {
     console.log('mounted')
+    this.getMe();
 //    this.searchCourse();
   },
 
   methods: {
+    setMe(data) {
+      console.log('me data: ', data);
+      this.meData = data.email;
+    },
+    async getMe() {
+      await axios
+        .get("http://localhost:8000/auth/me", {
+          withCredentials: true,
+        })
+        .then((res) => this.setMe(res.data));
+    },
+
     authorize() {
-      window.location.href = "http://localhost:8000/auth/google"; // Node.js 授權路由
+//      window.location.href = "http://localhost:8000/auth/google"; // Node.js 授權路由
+      window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fauth%2Fgoogle%2Fcallback&client_id=266847528060-86qmub9fgtbtavdkvicc98h5qmot8iub.apps.googleusercontent.com&access_type=offline&response_type=code&prompt=consent&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email"
     },
 
     async searchCourse() {
@@ -73,7 +89,7 @@ export default {
           // let result = data0.substring(idx + 8, data0.length - 2);
           // console.log('result: ', result)
           // this.youtubeIdList.push(result);
-          this.youtubeIdList.splice(0, this.youtubeIdList.length); 
+          this.youtubeIdList.splice(0, this.youtubeIdList.length);
 
           res.data.forEach((data) => {
             const idx = data.indexOf('watch?v=');
@@ -84,7 +100,7 @@ export default {
           })
 
 
-        } ) 
+        } )
       console.log('ret: ', ret)
     },
     AddVimeo() {
